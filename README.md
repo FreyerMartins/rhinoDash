@@ -9,3 +9,4 @@ simple dashboard using rhino package
 - create sample database 
 - create and test queries
 - add sample db to readme for ease of use
+

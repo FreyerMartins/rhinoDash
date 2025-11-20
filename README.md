@@ -1,2 +1,2 @@
 # rhinoDash
-simple dashboard using rhino package
+simple dashboard using rhino dasboard framework

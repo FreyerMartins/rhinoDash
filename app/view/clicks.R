@@ -20,6 +20,6 @@ ui <- function(id) {
 #' @export
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    output$counter <- renderText(input$click)
+    output$counter <- renderText(input$click + 1)
   })
 }

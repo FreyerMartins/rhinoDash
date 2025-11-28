@@ -1,27 +1,28 @@
+# app/main.R
+
 box::use(
-  shiny[bootstrapPage, div, h1, icon, moduleServer, NS, tags],
-  rhino[rhinos]
+  shiny[column, fluidPage, fluidRow, moduleServer, NS],
 )
+
 box::use(
-  app/view/chart,
-  app/view/table,
+  app/view/clicks,
+  app/view/message,
 )
+
 
 #' @export
 ui <- function(id) {
   ns <- NS(id)
-  
-  bootstrapPage(
-    h1("RhinoApplication"),
-    div(
-      class = "components-container",
-      table$ui(ns("table")),
-      chart$ui(ns("chart"))
-    ),
-    tags$button(
-      id = "help-button",
-      icon("question"),
-      onclick = "App.showHelp()" # JS reactive to show help button content
+  fluidPage(
+    fluidRow(
+      column(
+        width = 6,
+        clicks$ui(ns("clicks"))
+      ),
+      column(
+        width = 6,
+        message$ui(ns("message"))
+      )
     )
   )
 }
@@ -29,9 +30,7 @@ ui <- function(id) {
 #' @export
 server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    data <- rhinos
-    
-    table$server("table", data = data)
-    chart$server("chart", data = data)
+    clicks$server("clicks")
+    message$server("message")
   })
 }
